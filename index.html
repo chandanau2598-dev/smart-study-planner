@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Study Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Smart Study Planner</h1>
+    <div class="controls">
+      <button id="exportBtn" title="Export tasks">Export</button>
+      <input id="importFile" type="file" accept="application/json" hidden />
+      <button id="importBtn" title="Import tasks">Import</button>
+      <button id="clearAllBtn" title="Clear all tasks">Clear All</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="form-card">
+      <h2>Add / Edit Task</h2>
+      <form id="taskForm" autocomplete="off">
+        <input type="hidden" id="taskId" />
+        <label>
+          Title
+          <input id="title" type="text" required maxlength="100" placeholder="e.g. Physics — Chapter 4" />
+        </label>
+
+        <label>
+          Subject
+          <input id="subject" type="text" maxlength="50" placeholder="e.g. Physics" />
+        </label>
+
+        <label>
+          Due date & time
+          <input id="due" type="datetime-local" />
+        </label>
+
+        <label>
+          Priority
+          <select id="priority">
+            <option value="low">Low</option>
+            <option value="normal" selected>Normal</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+
+        <label class="checkbox">
+          <input id="remind" type="checkbox" /> Remind me (browser must be open)
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" id="saveBtn">Save Task</button>
+          <button type="button" id="resetBtn">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="list-card">
+      <div class="list-header">
+        <h2>My Tasks</h2>
+        <div>
+          <input id="filterInput" placeholder="Search or filter by subject..." />
+          <select id="sortSelect" title="Sort">
+            <option value="addedDesc">Newest</option>
+            <option value="dueAsc">Due — earliest</option>
+            <option value="priority">Priority</option>
+          </select>
+        </div>
+      </div>
+      <ul id="taskList" class="task-list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Tasks stored locally in your browser. Reminders only work when this page is open.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
